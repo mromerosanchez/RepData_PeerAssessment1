@@ -57,9 +57,11 @@ StepsByDay
 
 ```{r, histogram1, echo=TRUE, fig.width=12, warning=FALSE}
 
+
+
 hist(StepsByDay$steps, xlab="Number of Steps", ylab="Number of Days", main="Total Number of Steps by day")
 
-png("histogram1.png")
+
 
 
 ```
@@ -87,12 +89,14 @@ medianSteps
 
 steps_by_Interval<-aggregate(steps~interval, data=activity, mean, na.rm=TRUE)
 
+
+
 g<-ggplot(steps_by_Interval, aes(interval, steps))
 
 g+geom_line(col="blue")+ggtitle("Average steps per time interval")+xlab("Time")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=18))
 
 
-png("timeplot1.png")
+
 
 ```
 
@@ -149,10 +153,10 @@ head(filled_activity, n=10)
 ```{r, histogram2, echo=TRUE, fig.width=12, warning=FALSE}
 total_steps <- tapply(filled_activity$steps, filled_activity$date, FUN=sum)
 
+
 hist(total_steps, xlab="Number of Steps", ylab="Frecuency", main="Total Number of Steps by day")
 
 
-png("histogram2.png")
 ```
 
 
@@ -199,11 +203,11 @@ filled_activity$day <- sapply(filled_activity$date, FUN=weekday_or_weekend)
 
 averages <- aggregate(steps ~ interval + day, data=filled_activity, mean)
 
+
 g<-ggplot(averages, aes(interval, steps)) 
 g + geom_line(col="orange") + ggtitle("Average steps per Weekend or Weekday")+facet_grid(day ~ .) +
     xlab("5-minute interval") + ylab("Number of steps") + theme(plot.title = element_text(face="bold", size=18))
 
-png("figure2.png")
 
 ```
 
